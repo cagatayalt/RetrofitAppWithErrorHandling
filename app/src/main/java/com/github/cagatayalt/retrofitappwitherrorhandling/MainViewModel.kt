@@ -8,10 +8,11 @@ import com.github.cagatayalt.retrofitappwitherrorhandling.model.CryptoItem
 import com.github.cagatayalt.retrofitappwitherrorhandling.model.Post
 import com.github.cagatayalt.retrofitappwitherrorhandling.repository.Repository
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<Post> = MutableLiveData()
+    val myResponse: MutableLiveData<Response<Post>> = MutableLiveData()
     val cryptoResponse : MutableLiveData<ArrayList<CryptoItem>> = MutableLiveData()
 
     fun getPost() {
