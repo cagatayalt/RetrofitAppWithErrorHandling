@@ -25,6 +25,15 @@ class Repository {
         return RetrofitInstance.api.getCustomPosts2(userId,sort,order)
     }
 
+
+    suspend fun getCustomPosts3(userId: Int, options: Map<String,String>) : Response<List<Post>> {
+        return RetrofitInstance.api.getCustomPosts3(userId,options)
+    }
+
+
+
+
+
     suspend fun getCryptoData() : ArrayList<CryptoItem> {
         return RetrofitInstance.cryptoApi.getCryptoData()
     }

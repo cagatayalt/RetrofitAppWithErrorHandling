@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface SimpleApi {
 
@@ -47,8 +48,18 @@ interface SimpleApi {
         @Query("_sort") sort: String,
         @Query("_order") order: String
     ) : Response<List<Post>>
-
     // multiple custom queries: sort and order
+    // Ex: https://jsonplaceholder.typicode.com/posts?userId=3&_sort=id&_order=desc
+
+
+    @GET("posts")
+    suspend fun getCustomPosts3(
+        @Query("userId") userId: Int,
+        @QueryMap options: Map<String,String>
+    ) : Response<List<Post>>
+
+
+
 
 
 
