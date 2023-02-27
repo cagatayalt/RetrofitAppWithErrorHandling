@@ -12,8 +12,14 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<Response<Post>> = MutableLiveData()
-    val cryptoResponse : MutableLiveData<ArrayList<CryptoItem>> = MutableLiveData()
+    var myResponse: MutableLiveData<Response<Post>> = MutableLiveData()
+    var cryptoResponse : MutableLiveData<ArrayList<CryptoItem>> = MutableLiveData()
+
+    var myResponse2: MutableLiveData<Response<Post>> = MutableLiveData()
+    var myCustomPosts: MutableLiveData<Response<List<Post>>> = MutableLiveData()
+    var myCustomPosts2: MutableLiveData<Response<List<Post>>> = MutableLiveData()
+
+
 
     fun getPost() {
         viewModelScope.launch {
@@ -21,6 +27,31 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             myResponse.value  = response // mutable live data object ??
         }
     }
+
+    fun getPost2(number: Int) {
+        viewModelScope.launch {
+            val response = repository.getPost2(number)
+            myResponse2.value = response
+        }
+    }
+
+    fun getCustomPosts(userId: Int) {
+        viewModelScope.launch {
+            val response = repository.getCustomPosts(userId)
+            myCustomPosts.value = response
+        }
+    }
+
+    fun getCustomPosts2(userId: Int, sort: String, order: String) {
+        viewModelScope.launch {
+            val response = repository.getCustomPosts2(userId,sort,order)
+            myCustomPosts2.value = response
+        }
+    }
+
+
+
+
 
     fun getCryptoData() {
         viewModelScope.launch {
